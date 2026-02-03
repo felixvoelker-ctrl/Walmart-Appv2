@@ -6,7 +6,6 @@ import { User } from 'src/app/models/User';
 import { UsersService } from 'src/app/services/users.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { CartItemsService } from 'src/app/services/cart-items.service';
-import { newArray } from '@angular/compiler/src/util';
 import { productDetails } from 'src/app/models/productDetails';
 
 @Component({
