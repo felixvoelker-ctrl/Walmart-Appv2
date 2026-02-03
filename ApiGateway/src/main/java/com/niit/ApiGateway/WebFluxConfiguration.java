@@ -1,15 +1,10 @@
 package com.niit.ApiGateway;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.reactive.CorsWebFilter;
-import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
-import org.springframework.web.reactive.config.CorsRegistry;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 
-import com.google.common.net.HttpHeaders;
-
-public class Configuration implements WebFluxConfigurer{
+@Configuration
+public class WebFluxConfiguration implements WebFluxConfigurer {
 //	@Override
 //    public void addCorsMappings(CorsRegistry registry) {
 //        registry.addMapping("/**")

@@ -24,19 +24,6 @@ import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-// Inside your class
-private static final Logger logger = LogManager.getLogger(SearchController.class);
-
-@GetMapping("/search")
-public String search(@RequestParam String query) {
-    // This is the "vulnerable" line Devin will find
-    logger.info("User searching for: {}", query); 
-    return "results";
-}
-
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/auth")
