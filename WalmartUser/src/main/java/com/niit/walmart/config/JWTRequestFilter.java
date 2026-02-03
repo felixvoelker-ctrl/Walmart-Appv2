@@ -19,10 +19,14 @@ import com.niit.walmart.config.JWTUtil;
 import com.niit.walmart.service.JWTUserDetailService;
 
 import io.jsonwebtoken.ExpiredJwtException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Component
 public class JWTRequestFilter extends OncePerRequestFilter {
-	@Autowired
+    private static final Logger logger = LoggerFactory.getLogger(JWTRequestFilter.class);
+
+    @Autowired
     private JWTUserDetailService jwtUserDetailsService;
 
     @Autowired
@@ -40,12 +44,12 @@ public class JWTRequestFilter extends OncePerRequestFilter {
             try {
                 username = jwtUtil.getUsernameFromToken(jwtToken);
             } catch (IllegalArgumentException e) {
-                System.out.println("Unable to get JWT token.");
+                logger.warn("Unable to get JWT token: {}", e.getMessage());
             } catch (ExpiredJwtException e) {
-                System.out.println("JWT token has expired.");
+                logger.debug("JWT token has expired: {}", e.getMessage());
             }
-        } else {
-            logger.warn("JWT token does not begin w/ \"Bearer\"");
+        } else if (requestTokenHeader != null) {
+            logger.warn("JWT token does not begin with Bearer prefix");
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
